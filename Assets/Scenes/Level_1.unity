@@ -26130,6 +26130,10 @@ PrefabInstance:
       value: 0.3826834
       objectReference: {fileID: 0}
     - target: {fileID: 9020558690421765927, guid: 3f3714352688b8b45938c98981a969aa, type: 3}
+      propertyPath: _visionRadius
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 9020558690421765927, guid: 3f3714352688b8b45938c98981a969aa, type: 3}
       propertyPath: _visionRayDistance
       value: 10
       objectReference: {fileID: 0}
