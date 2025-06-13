@@ -5660,7 +5660,7 @@ GameObject:
   - component: {fileID: 1732504884648856970}
   - component: {fileID: 8074223016166592495}
   - component: {fileID: 9020558690421765927}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: -964228994112308473, guid: 0000000000000000d000000000000000, type: 0}
@@ -5790,6 +5790,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a74d78e4c28b5b44582c09f71376ddae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  botonPressed: 0
 --- !u!114 &1732504884648856970
 MonoBehaviour:
   m_ObjectHideFlags: 0
