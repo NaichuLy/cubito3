@@ -15717,6 +15717,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1209792471385373497, guid: 3f3714352688b8b45938c98981a969aa, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1251594774741788388, guid: 3f3714352688b8b45938c98981a969aa, type: 3}
       propertyPath: m_LocalPosition.x
       value: -4.39
@@ -15777,6 +15781,10 @@ PrefabInstance:
       propertyPath: neutralFace
       value: 
       objectReference: {fileID: 2817740715889022606}
+    - target: {fileID: 1732504884648856970, guid: 3f3714352688b8b45938c98981a969aa, type: 3}
+      propertyPath: _objectRenderer
+      value: 
+      objectReference: {fileID: 1842965829}
     - target: {fileID: 1909333056353894327, guid: 3f3714352688b8b45938c98981a969aa, type: 3}
       propertyPath: m_Mesh
       value: 
@@ -26131,7 +26139,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9020558690421765927, guid: 3f3714352688b8b45938c98981a969aa, type: 3}
       propertyPath: _visionRadius
-      value: 10
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 9020558690421765927, guid: 3f3714352688b8b45938c98981a969aa, type: 3}
       propertyPath: _visionRayDistance
@@ -27389,6 +27397,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: db94bab9a73be954abe1e2bfef35abf9, type: 3}
+--- !u!23 &1842965829 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 2815148149670611841, guid: 3f3714352688b8b45938c98981a969aa, type: 3}
+  m_PrefabInstance: {fileID: 1722288476}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1858930761
 GameObject:
   m_ObjectHideFlags: 0
