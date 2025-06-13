@@ -4,20 +4,34 @@ using UnityEngine;
 
 public class Buttom : MonoBehaviour
 {
-   public bool _pressed = false;
-    private void OnTriggerEnter(Collider other)
+    [SerializeField] protected LayerMask capasPermitidas;
+    [SerializeField] protected List<string> tagsPermitidos;
+
+    protected int objetosDentro = 0;
+
+    public virtual bool IsPressed => objetosDentro > 0;
+
+    protected virtual void OnTriggerEnter(Collider other)
     {
-        if (gameObject.CompareTag("Player"))
+        if (EsObjetoPermitido(other))
         {
-            _pressed = true;
+            objetosDentro++;
         }
     }
 
-    private void OnTriggerExit(Collider other)
+    protected virtual void OnTriggerExit(Collider other)
     {
-         if (gameObject.CompareTag("Player"))
+        if (EsObjetoPermitido(other))
         {
-            _pressed = true;
+            objetosDentro--;
         }
     }
+
+    protected bool EsObjetoPermitido(Collider other)
+    {
+        bool layerOk = ((1 << other.gameObject.layer) & capasPermitidas) != 0;
+        bool tagOk = tagsPermitidos.Contains(other.tag);
+        return layerOk || tagOk;
+    }
 }
+
