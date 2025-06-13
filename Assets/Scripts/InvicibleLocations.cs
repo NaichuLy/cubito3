@@ -5,36 +5,24 @@ using UnityEngine;
 public class InvicibleLocations : MonoBehaviour
 {
     [SerializeField] private LayerMask _invisibleRayMask;
-    [SerializeField] private float _visionRadius = 4f;
-    private Vector3 _posOffset = new(0, 1f, 0);
-    private ParticleSystem _alertParticles;
-    private bool _isNear = false;
-    private bool _wasNear = false;
-
-    private void Start()
-    {
-        _alertParticles = GetComponentInChildren<ParticleSystem>();
-    }
+    [SerializeField] private float _visionRadius = 4f; 
+    private Vector3 _posOffset = new(0, 1f, 0); 
+    private bool _isNear;
 
     private void Update()
     {
-        _isNear = IsNearInvisibleSpikes();
-
-        if (_isNear && !_wasNear)
+        _isNear = IsNear();
+        if (_isNear)
         {
-            Debug.Log("particulas si");
-            _alertParticles.Play();
+            Debug.Log("Hay algo invisible cerca");
         }
-        else if (!_isNear && _wasNear)
+        else
         {
-            Debug.Log("particulas no");
-            _alertParticles.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
+            Debug.Log("No hay algo invisible cerca");
         }
-
-        _wasNear = _isNear;
     }
 
-    private bool IsNearInvisibleSpikes()
+    private bool IsNear()
     {
         Vector3 sphereCenter = transform.position + _posOffset;
         return Physics.CheckSphere(sphereCenter, _visionRadius, _invisibleRayMask);

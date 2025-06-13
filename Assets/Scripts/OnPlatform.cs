@@ -7,7 +7,6 @@ public class OnPlatform : MonoBehaviour
     private Rigidbody _rb;
     private Rigidbody rbPlataformaActual;
     private bool enPlataforma = false;
-    public bool botonPressed;
 
     void Start()
     {

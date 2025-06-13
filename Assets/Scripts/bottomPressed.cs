@@ -1,25 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
-public class bottomPressed : MonoBehaviour
+public class bottomPressed : move
 {
-    [SerializeField] private LayerMask allowedLayer;
-    [SerializeField]protected bool pressed = false;
-
-    private void OnTriggerEnter(Collider collision)
+    [SerializeField] Buttom buttom;
+    /*public override void Movement()
     {
-        if (collision.gameObject.layer == allowedLayer)
+        if (gameObject.GetComponent<Buttom>()._pressed)
         {
-            pressed = true;
+            base.Movement();
         }
-        else  pressed = false;
-    }
-
-    private void OnTriggerExit(Collider other)
-    {
-            pressed = false;
-    }
-
+    }*/
 }

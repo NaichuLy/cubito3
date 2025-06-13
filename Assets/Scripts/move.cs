@@ -2,16 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class move : bottomPressed
+public class move : MonoBehaviour
 {
-    [SerializeField]Transform[] puntos;
-    [SerializeField] GameObject boton;         
+    [SerializeField]Transform[] puntos;             
     [SerializeField]float velocidad = 2f;
     [SerializeField] float tolerancia = 0.1f;        
 
     int _indiceActual = 0;
     bool _enReversa = false;
-    [SerializeField] bool needsButton;
     Rigidbody rb;
 
     void Start()
@@ -22,52 +20,35 @@ public class move : bottomPressed
 
     void FixedUpdate()
     {
-       if (puntos.Length == 0) return;
+        if (puntos.Length == 0) return;
 
-       if (boton == null)
-       {
-            Movement();
-       }
-       else
-       {    if (pressed)
-            {
-                Debug.Log("me deberia de mover muchacho");
-                Movement();
-            }
-            
-       }
-        
-       
-    }
-
- private void Movement()
-    {
         Transform objetivo = puntos[_indiceActual];
         Vector3 direccion = (objetivo.position - transform.position).normalized;
-        Vector3 nuevaPosicion = transform.position + direccion * velocidad * Time.fixedDeltaTime; 
+        Vector3 nuevaPosicion = transform.position + direccion * velocidad * Time.fixedDeltaTime;
+
         rb.MovePosition(nuevaPosicion);
 
         if (Vector3.Distance(transform.position, objetivo.position) <= tolerancia)
         {
-             if (!_enReversa)
+            if (!_enReversa)
+            {
+                _indiceActual++;
+                if (_indiceActual >= puntos.Length)
                 {
-                    _indiceActual++;
-                    if (_indiceActual >= puntos.Length)
-                    {
-                      _indiceActual = puntos.Length - 2;
-                        _enReversa = true;
-                    }
-                } else
-              {
-                    _indiceActual--;
-                    if (_indiceActual < 0)
-                    {
-                     _indiceActual = 1;
-                     _enReversa = false;
-                    }
-               }
+                    _indiceActual = puntos.Length - 2;
+                    _enReversa = true;
+                }
+            }
+            else
+            {
+                _indiceActual--;
+                if (_indiceActual < 0)
+                {
+                    _indiceActual = 1;
+                    _enReversa = false;
+                }
+            }
         }
-       
     }
 }
 
