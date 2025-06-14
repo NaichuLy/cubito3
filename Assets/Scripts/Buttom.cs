@@ -34,4 +34,3 @@ public class Buttom : MonoBehaviour
         return layerOk || tagOk;
     }
 }
-
