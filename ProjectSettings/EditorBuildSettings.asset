@@ -9,7 +9,7 @@ EditorBuildSettings:
     path: Assets/Scenes/Menu.unity
     guid: 95bcbebd930c34c48a72c8ac9c4ca418
   - enabled: 1
-    path: Assets/Scenes/Level_2.unity
+    path: Assets/Scenes/Level_3.unity
     guid: 9a85c8b44d639a74e9c7623f629b2bc5
   - enabled: 0
     path: Assets/Scenes/cub.E.unity
@@ -20,6 +20,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/DefeatScreen.unity
     guid: 3810dc139fe6ea8438adae4367f50a1b
+  - enabled: 1
+    path: Assets/Scenes/Level_2.unity
+    guid: 938b5467efb866649a1f3407cbf3198f
   - enabled: 1
     path: Assets/Scenes/Level_1.unity
     guid: 7c065d04fa442b84684f2bb37b6a32ec

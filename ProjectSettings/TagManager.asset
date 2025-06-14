@@ -9,11 +9,12 @@ TagManager:
   - Platform
   - BigCube
   - CubeSlot
+  - Coin
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Player
   - Water
   - UI
   - Ground

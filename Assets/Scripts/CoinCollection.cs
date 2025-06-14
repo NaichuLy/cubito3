@@ -6,7 +6,7 @@ public class CoinCollection : MonoBehaviour
 {
     private int Coin = 0;
     public TextMeshProUGUI coinText;
-    public AudioClip collectSound;  // ← El sonido que vas a asignar desde el Inspector
+    public AudioClip collectSound;
 
     private AudioSource audioSource;
     private HashSet<GameObject> coinsCollected = new HashSet<GameObject>();
@@ -28,7 +28,7 @@ public class CoinCollection : MonoBehaviour
 
             if (collectSound != null && audioSource != null)
             {
-                audioSource.PlayOneShot(collectSound); // ← ¡Sonido!
+                audioSource.PlayOneShot(collectSound);
             }
 
             Destroy(other.gameObject);

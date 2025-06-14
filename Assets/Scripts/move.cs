@@ -4,9 +4,11 @@ using UnityEngine;
 
 public class move : MonoBehaviour
 {
-    [SerializeField]Transform[] puntos;             
-    [SerializeField]float velocidad = 2f;
-    [SerializeField] float tolerancia = 0.1f;        
+    [SerializeField] Transform[] puntos;
+    [SerializeField] float velocidad = 2f;
+    [SerializeField] float tolerancia = 0.1f;
+    [SerializeField] Buttom boton;
+    [SerializeField] bool requiereBoton = false;
 
     int _indiceActual = 0;
     bool _enReversa = false;
@@ -15,11 +17,12 @@ public class move : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody>();
-        rb.isKinematic = true; 
+        rb.isKinematic = true;
     }
 
     void FixedUpdate()
     {
+        if (requiereBoton && (boton == null || !boton.IsPressed)) return;
         if (puntos.Length == 0) return;
 
         Transform objetivo = puntos[_indiceActual];

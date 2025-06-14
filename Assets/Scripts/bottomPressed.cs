@@ -2,14 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class bottomPressed : move
+public class bottomPressed : Buttom
 {
-    [SerializeField] Buttom buttom;
-    /*public override void Movement()
+    void Update()
     {
-        if (gameObject.GetComponent<Buttom>()._pressed)
+        if (IsPressed)
         {
-            base.Movement();
+            //esto pa poner animcion mushashos, no lo saquen plis :c
         }
-    }*/
+    }
 }

@@ -7,7 +7,7 @@ public class MovementPlayer : MonoBehaviour
     [Header("<color=green>Physics</color>")]
     [SerializeField] private LayerMask _groundRayMask;
     [SerializeField] private Transform _cameraTransform;
-    [SerializeField] private float _moveSpeed = 3.5f;
+    [SerializeField] public float _moveSpeed = 3.5f;
     [SerializeField] private float _rotationSpeed = 10f;
     [SerializeField] private float _grounRayDistance = 0.25f;
     [SerializeField] private float _jumpForce = 3f;

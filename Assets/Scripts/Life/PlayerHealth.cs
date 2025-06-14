@@ -12,10 +12,16 @@ public class PlayerHealth : MonoBehaviour
     [SerializeField] GameObject neutralFace;
     [SerializeField] GameObject deadFace;
 
+    [SerializeField] private GameObject _antenaRenderer;
+    [SerializeField] private Renderer _bodyRenderer;
+    [SerializeField] private ParticleSystem _deathParticles;
+    private ParticleSystem _alertParticles;
+
     private void Start()
     {
         _playerLife = _maxPlayerLife;
         happyFace.SetActive(true);
+        _alertParticles = GetComponentInChildren<ParticleSystem>();
     }
 
     private void Update()
@@ -29,13 +35,17 @@ public class PlayerHealth : MonoBehaviour
     {
         _playerLife -= damage;
         lifeBar.UpdateLifeBar(_maxPlayerLife, _playerLife);
-        
+
         FaceUpdate();
 
         if (_playerLife <= 0)
         {
-            Destroy(gameObject, 0.3f);
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            GetComponent<MovementPlayer>()._moveSpeed = 0f;
+            _alertParticles.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
+            _antenaRenderer.SetActive(false);
+            _bodyRenderer.enabled = false;
+            _deathParticles.Play();
+            Invoke("ResetScene", 0.7f);
         }
     }
 
@@ -47,7 +57,7 @@ public class PlayerHealth : MonoBehaviour
             neutralFace.SetActive(false);
             deadFace.SetActive(false);
         }
-        else if (_playerLife <60 && _playerLife > 30)
+        else if (_playerLife < 60 && _playerLife > 30)
         {
             happyFace.SetActive(false);
             neutralFace.SetActive(true);
@@ -59,6 +69,12 @@ public class PlayerHealth : MonoBehaviour
             neutralFace.SetActive(false);
             deadFace.SetActive(true);
         }
+    }
+
+    private void ResetScene()
+    {
+        Destroy(gameObject, 0.3f);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
 }

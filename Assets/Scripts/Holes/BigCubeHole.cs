@@ -5,6 +5,7 @@ using UnityEngine;
 public class BigCubeHole : MonoBehaviour, ICubeSlot
 {
     [SerializeField] private Transform cubeDestination;
+    [SerializeField] private bool _isLastCube = false;
     private bool isOccupied = false;
 
     public bool hasCube = false;
@@ -29,6 +30,16 @@ public class BigCubeHole : MonoBehaviour, ICubeSlot
 
         FindObjectOfType<LevelOrderManager>()?.RegisterCube(other.gameObject);
         Debug.Log("Big cube colocado!");
+
+       if (_isLastCube)
+        {
+            LevelManager levelManager = FindObjectOfType<LevelManager>();
+            if (levelManager != null)
+            {
+                levelManager.CheckLevelCompletion();
+            }
+
+        }
     }
 
     public void ResetHole()

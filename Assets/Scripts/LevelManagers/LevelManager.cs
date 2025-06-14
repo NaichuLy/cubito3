@@ -12,10 +12,6 @@ public class LevelManager : MonoBehaviour
     [SerializeField] private string victorySceneName = "Victoria";
     private int _currentLevel;
 
-    private void Awake()
-    {
-        PlayerPrefs.SetInt("UnlockedLevel", 1);
-    }
 
     private void Start()
     {

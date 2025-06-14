@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 6822189853872373038}
   - component: {fileID: 3892772712285161822}
   - component: {fileID: 8384667121147993472}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Pincho
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -263,9 +263,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c991b2f15e5324e46866a76a6c3934ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minYaw: 90
   maxYaw: 120
-  minPitch: -10
   maxPitch: 10
   cameraTransform: {fileID: 0}
 --- !u!23 &6822189853872373038
