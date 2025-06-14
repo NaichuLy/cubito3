@@ -11,6 +11,11 @@ public class PlayerHealth : MonoBehaviour
     [SerializeField] GameObject happyFace;
     [SerializeField] GameObject neutralFace;
     [SerializeField] GameObject deadFace;
+   
+    [SerializeField] private GameObject _antenaRenderer;
+    [SerializeField] private Renderer _bodyRenderer;
+    [SerializeField] private ParticleSystem _deathParticles;
+    private ParticleSystem _alertParticles;
 
     [SerializeField] private GameObject _antenaRenderer;
     [SerializeField] private Renderer _bodyRenderer;
