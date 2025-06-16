@@ -1462,7 +1462,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2fac18ccba60a0c49b55647e4fa42454, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cubeDestination: {fileID: 0}
+  cubeDestination: {fileID: 2270205557637898899}
+  _isLastCube: 0
   hasCube: 0
 --- !u!1 &5849350768462545233
 GameObject:

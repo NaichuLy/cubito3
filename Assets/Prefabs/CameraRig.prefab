@@ -64,10 +64,10 @@ Camera:
     y: 0
     width: 1
     height: 1
-  near clip plane: -49.92
+  near clip plane: 0.01
   far clip plane: 1554.7
-  field of view: 60
-  orthographic: 1
+  field of view: 22
+  orthographic: 0
   orthographic size: 22.46
   m_Depth: 0
   m_CullingMask:
@@ -138,12 +138,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 0}
-  distance: 10
-  zoomedDistance: 5
+  distance: 10.8
+  zoomedDistance: 1.65
   rotationSpeed: 3.83
-  clampPitch: 0
-  minPitch: 10
-  maxPitch: 80
-  followSpeed: 1
+  clampPitch: 1
+  minPitch: -100
+  maxPitch: 55
+  followSpeed: 0.5
   normalFOV: 60
   zoomedFOV: 60.5

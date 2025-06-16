@@ -11,7 +11,7 @@ public class PlayerHealth : MonoBehaviour
     [SerializeField] GameObject happyFace;
     [SerializeField] GameObject neutralFace;
     [SerializeField] GameObject deadFace;
-   
+
     [SerializeField] private GameObject _antenaRenderer;
     [SerializeField] private Renderer _bodyRenderer;
     [SerializeField] private ParticleSystem _deathParticles;
@@ -35,7 +35,7 @@ public class PlayerHealth : MonoBehaviour
     {
         _playerLife -= damage;
         lifeBar.UpdateLifeBar(_maxPlayerLife, _playerLife);
-        
+
         FaceUpdate();
 
         if (_playerLife <= 0)
@@ -57,7 +57,7 @@ public class PlayerHealth : MonoBehaviour
             neutralFace.SetActive(false);
             deadFace.SetActive(false);
         }
-        else if (_playerLife <60 && _playerLife > 30)
+        else if (_playerLife < 60 && _playerLife > 30)
         {
             happyFace.SetActive(false);
             neutralFace.SetActive(true);

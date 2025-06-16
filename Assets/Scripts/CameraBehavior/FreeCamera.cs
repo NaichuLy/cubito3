@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -20,19 +20,25 @@ public class FreeCamera : MonoBehaviour
     [Header("Follow Smoothing")]
     public float followSpeed = 5f;
 
+    [Header("Zoom Settings")]
+    public float normalFOV = 60f;
+    public float zoomedFOV = 40f;
+
+    [Header("Collision Settings")]
+    public bool enableCollision = true;              // ⬅️ Check en el Inspector
+    public LayerMask collisionMask;
+    public float collisionRadius = 0.3f;
+    public float minDistance = 1f;
+
     private float yaw;
     private float pitch;
     private Vector3 currentVelocity;
     private bool isZoomedIn = false;
 
-
     private Camera cameraComponent;
-    public float normalFOV = 60f;
-    public float zoomedFOV = 40f;
 
     void Start()
     {
-
         cameraComponent = GetComponentInChildren<Camera>();
 
         if (cameraComponent == null)
@@ -44,7 +50,7 @@ public class FreeCamera : MonoBehaviour
 
         if (target == null)
         {
-            Debug.LogError("CenteredCameraFollowAndRotate: No target assigned.");
+            Debug.LogError("FreeCamera: No target assigned.");
             enabled = false;
             return;
         }
@@ -58,44 +64,53 @@ public class FreeCamera : MonoBehaviour
 
     void LateUpdate()
     {
-        if (target != null)
-        {
-            HandleRotation();
+        if (target == null) return;
 
-            if (Input.GetKeyDown(KeyCode.K))
+        HandleRotation();
+
+        if (Input.GetKeyDown(KeyCode.K))
+        {
+            isZoomedIn = !isZoomedIn;
+            cameraComponent.fieldOfView = isZoomedIn ? zoomedFOV : normalFOV;
+            distance = isZoomedIn ? zoomedDistance : 15f;
+        }
+
+        Quaternion rotation = Quaternion.Euler(pitch, yaw, 0);
+        Vector3 direction = rotation * Vector3.back;
+
+        Vector3 finalPosition;
+
+        if (enableCollision)
+        {
+            Vector3 rayOrigin = target.position + Vector3.up * 1.5f;
+            float adjustedDistance = distance;
+
+            if (Physics.SphereCast(rayOrigin, collisionRadius, direction, out RaycastHit hit, distance, collisionMask))
             {
-                isZoomedIn = !isZoomedIn;
-                cameraComponent.fieldOfView = isZoomedIn ? zoomedFOV : normalFOV;
-                distance = isZoomedIn ? zoomedDistance : 15f;
+                adjustedDistance = Mathf.Clamp(hit.distance, minDistance, distance);
             }
 
-
-            Quaternion rotation = Quaternion.Euler(pitch, yaw, 0);
-
-
-            Vector3 offset = rotation * new Vector3(0, 0, -distance);
-            Vector3 desiredPosition = target.position + offset;
-
-
-            transform.position = Vector3.SmoothDamp(transform.position, desiredPosition, ref currentVelocity, Time.deltaTime * followSpeed);
-
-
-            transform.LookAt(target.position);
-
+            finalPosition = target.position + direction * adjustedDistance;
         }
+        else
+        {
+            finalPosition = target.position + direction * distance;
+        }
+
+        transform.position = Vector3.SmoothDamp(transform.position, finalPosition, ref currentVelocity, Time.deltaTime * followSpeed);
+        transform.LookAt(target.position);
     }
 
     void HandleRotation()
     {
         if (Input.GetMouseButton(1))
         {
-
             float mouseX = Input.GetAxis("Mouse X");
             float mouseY = Input.GetAxis("Mouse Y");
 
             yaw += mouseX * rotationSpeed;
-
             pitch -= mouseY * rotationSpeed;
+
             if (clampPitch)
             {
                 pitch = Mathf.Clamp(pitch, minPitch, maxPitch);
@@ -103,3 +118,4 @@ public class FreeCamera : MonoBehaviour
         }
     }
 }
+

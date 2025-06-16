@@ -6,10 +6,15 @@ public class InvicibleLocations : MonoBehaviour
 {
     [SerializeField] private LayerMask _invisibleRayMask;
     [SerializeField] private float _visionRadius = 4f;
-    [SerializeField] private ParticleSystem _alertParticles;
     private Vector3 _posOffset = new(0, 1f, 0);
+    private ParticleSystem _alertParticles;
     private bool _isNear = false;
     private bool _wasNear = false;
+
+    private void Start()
+    {
+        _alertParticles = GetComponentInChildren<ParticleSystem>();
+    }
 
     private void Update()
 
@@ -17,19 +22,14 @@ public class InvicibleLocations : MonoBehaviour
         _isNear = IsNear();
 
         if (_isNear && !_wasNear)
-            _isNear = IsNear();
-        if (_isNear)
         {
             Debug.Log("particulas si");
-            _alertParticles.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
             _alertParticles.Play();
-            Debug.Log("Hay algo invisible cerca");
         }
         else if (!_isNear && _wasNear)
         {
             Debug.Log("particulas no");
             _alertParticles.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
-            Debug.Log("No hay algo invisible cerca");
         }
 
         _wasNear = _isNear;
@@ -48,3 +48,4 @@ public class InvicibleLocations : MonoBehaviour
         Gizmos.DrawWireSphere(sphereCenter, _visionRadius);
     }
 }
+

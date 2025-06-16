@@ -9,6 +9,7 @@ TagManager:
   - Platform
   - BigCube
   - CubeSlot
+  - Coin
   layers:
   - Default
   - TransparentFX
@@ -18,7 +19,7 @@ TagManager:
   - UI
   - Ground
   - Invicible
-  - 
+  - Obstacle
   - 
   - 
   - 
